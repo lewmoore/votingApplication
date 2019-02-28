@@ -3,5 +3,27 @@
         <title> Voting app </title>
     </head>
     <body>
+        <h1>Vote below:</h1>
+        <form action='/vote/new' method='POST' id='votingform'>
+            <label for='linux'>Linux</label>
+            <input id='linux' name='Linux' type='checkbox' class='checkbox' onclick="vote(this)"/>
+            <label for='macos'>MacOS</label>
+            <input id='macos' name='MacOS' type='checkbox' class='checkbox' onclick='vote(this)'/>
+            <label for='windows'>Windows</label>
+            <input id='windows' name='Windows' type='checkbox' class='checkbox' onclick='vote(this)'/>
+            <input type='submit' />
+        </form>
+
+        <h1>Results</h1>
+        <p> Linux: 
+            <span id='linuxvotes'>0</span>
+            votes
+        </p>
+        <p>MacOS:
+            <span id='macosvotes'>0</span>
+        </p>
+        <p>Windows:
+            <span id='windowsvotes'>0</span>
+        </p>
     </body>
 </html>
