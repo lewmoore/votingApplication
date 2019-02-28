@@ -8,11 +8,11 @@
     <h1>Vote below:</h1>
     <form action='/vote/new' method='POST' id='votingform'>
         <label for='linux'>Linux</label>
-        <input id='linux' name='Linux' type='checkbox' class='checkbox' onclick="vote(this)" />
+        <input id='linux' name='linux' type='checkbox' class='checkbox' onclick="vote(this)" />
         <label for='macos'>MacOS</label>
-        <input id='macos' name='MacOS' type='checkbox' class='checkbox' onclick='vote(this)' />
+        <input id='macos' name='macos' type='checkbox' class='checkbox' onclick='vote(this)' />
         <label for='windows'>Windows</label>
-        <input id='windows' name='Windows' type='checkbox' class='checkbox' onclick='vote(this)' />
+        <input id='windows' name='windows' type='checkbox' class='checkbox' onclick='vote(this)' />
         <input type='submit' />
     </form>
 
@@ -25,15 +25,25 @@
         <span id='macosvotes'>0</span>
     </p>
     <p>Windows:
-        <span id='windowsvotes'>1</span>
+        <span id='windowsvotes'>0</span>
     </p>
 
     <script>
+        let votingForm = document.getElementById('votingform')
+        let vote = element => {
+            let checkboxes = document.getElementsByClassName('checkbox')
+            for(i = 0; i <= checkboxes.length -1; i++){
+                if(checkboxes[i].id !== element.id){
+                    checkboxes[i].checked = false
+                }
+            } 
+        }
+
         window.onload = () => {
             fetch('/poll').then(results => {
                 results.json().then(data => {
                     for (x in data) {
-                        document.getElementById(x + votes).innerText = data[x]
+                        document.getElementById(x + 'votes').innerText = data[x]
                     }
                 })
             })
